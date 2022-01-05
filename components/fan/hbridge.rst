@@ -3,7 +3,7 @@ H-bridge Fan
 
 .. seo::
     :description: Instructions for setting up hbridge controlled fans (or motors).
-    :image: fan.png
+    :image: fan.svg
 
 The `'hbridge`' fan platform allows you to use a compatible `h-bridge` (L298N, DRV8871, MX1508, BTS7960, L9110S, DRV8833, TB6612, etc.) to control a fan (or motor/solenoid).
 
@@ -23,6 +23,14 @@ The `'hbridge`' fan platform allows you to use a compatible `h-bridge` (L298N, D
 .. code-block:: yaml
 
     # Example configuration entry
+    output:
+      - platform: ...
+        id: motor_forward_pin
+        pin: GPIO5
+      - platform: ...
+        id: motor_reverse_pin
+        pin: GPIO4
+    
     fan:
       - platform: hbridge
         id: my_fan

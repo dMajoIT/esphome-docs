@@ -3,7 +3,7 @@ ESP32 Camera Component
 
 .. seo::
     :description: Instructions for setting up the ESP32 Cameras in ESPHome
-    :image: camera.png
+    :image: camera.svg
 
 The ``esp32_camera`` component allows you to use ESP32-based camera boards in ESPHome that
 directly integrate into Home Assistant through the native API.
@@ -31,6 +31,10 @@ Configuration variables:
 ------------------------
 
 - **name** (**Required**, string): The name of the camera.
+- **icon** (*Optional*, icon): Manually set the icon to use for the camera in the frontend.
+- **internal** (*Optional*, boolean): Mark this component as internal. Internal components will
+  not be exposed to the frontend (like Home Assistant). Only specifying an ``id`` without
+  a ``name`` will implicitly set this to true.
 - **disabled_by_default** (*Optional*, boolean): If true, then this entity should not be added to any client's frontend,
   (usually Home Assistant) without the user manually enabling it (via the Home Assistant UI).
   Requires Home Assistant 2021.9 or newer. Defaults to ``false``.

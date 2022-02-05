@@ -96,6 +96,9 @@ Frame Settings:
 - **saturation** (*Optional*, int): The saturation to apply to the picture, from -2 to 2. Defaults to ``0``.
 - **vertical_flip** (*Optional*, boolean): Whether to flip the image vertically. Defaults to ``true``.
 - **horizontal_mirror** (*Optional*, boolean): Whether to mirror the image horizontally. Defaults to ``true``.
+- **aec2** (*Optional*, boolean): Whether to enable Auto Exposure Control 2. Defaults to ``false``.
+- **ae_level** (*Optional*, int): The auto exposure level to apply to the picture, from -2 to 2. Defaults to ``0``.
+- **aec_value** (*Optional*, int): The Auto Exposure Control 2 value to apply to the picture, from 0 to 1200. Defaults to ``300``.
 
 .. note::
 
@@ -157,6 +160,28 @@ Configuration for M5Stack Camera
       name: My Camera
       # ...
 
+Configuration for M5Stack Timer Camera X/F
+------------------------------------------
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    esp32_camera:
+      external_clock:
+        pin: GPIO27
+        frequency: 20MHz
+      i2c_pins:
+        sda: GPIO25
+        scl: GPIO23
+      data_pins: [GPIO32, GPIO35, GPIO34, GPIO5, GPIO39, GPIO18, GPIO36, GPIO19]
+      vsync_pin: GPIO22
+      href_pin: GPIO26
+      pixel_clock_pin: GPIO21
+      reset_pin: GPIO15
+
+      # Image settings
+      name: My Camera
+      # ...
 
 Configuration for Wrover Kit Boards
 -----------------------------------

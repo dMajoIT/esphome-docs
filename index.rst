@@ -23,17 +23,17 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
             <ul>
                 <li>
                     <a class="reference" href="/guides/getting_started_hassio.html">
-                        ESPHome Dashboard
+                        from Home Assistant
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/getting_started_command_line.html">
-                        Command Line Interface
+                        using the command line
                     </a>
                 </li>
                 <li>
                     <a class="reference" href="/guides/migrate_sonoff_tasmota.html">
-                        Migrating from Tasmota
+                        by migrating from Tasmota
                     </a>
                 </li>
             </ul>
@@ -82,6 +82,16 @@ ESPHome is a system to control your ESP8266/ESP32 by simple yet powerful configu
         <div class="guide-card">
             <h3 class="guide-card-title">Keeping up</h3>
             <ul>
+                <li>
+                    <a class="reference" href="https://discord.gg/KhAMKrd" target="_blank">
+                        Discord
+                    </a>
+                </li>
+                <li>
+                    <a class="reference" href="https://community.home-assistant.io/c/esphome/" target="_blank">
+                        Forums
+                    </a>
+                </li>
                 <li>
                     <a class="reference" href="/changelog/index.html">
                         Changelog
@@ -185,7 +195,7 @@ Air Quality
     SGP40, components/sensor/sgp40, sgp40.jpg, Volatile organics
     SM300D2, components/sensor/sm300d2, sm300d2.jpg, Air quality
     SPS30, components/sensor/sps30, sps30.jpg, Particulate
-    T6613/15, components/sensor/t6615, t6615.png, CO2
+    T6613/15, components/sensor/t6615, t6615.jpg, CO2
     ZyAura, components/sensor/zyaura, zgm053.jpg, CO2 & Temperature & Humidity
 
 
@@ -195,7 +205,9 @@ Analogue
 
     ADC, components/sensor/adc, flash.svg, ESP internal
     ADS1115, components/sensor/ads1115, ads1115.jpg, 4-channel ADC
+    CD74HC4067, components/sensor/cd74hc4067, cd74hc4067.jpg, 16-channel analog multiplexer
     MCP3008, components/sensor/mcp3008, mcp3008.jpg, 8-channel ADC
+    MCP3204, components/sensor/mcp3204, mcp3204.jpg, 4-channel ADC
     Resistance, components/sensor/resistance, omega.svg
 
 
@@ -228,7 +240,7 @@ Distance
     HRXL MaxSonar WR, components/sensor/hrxl_maxsonar_wr, hrxl_maxsonar_wr.jpg, Acoustic distance
     TOF10120, components/sensor/tof10120, tof10120.jpg, IR optical distance
     Ultrasonic Sensor, components/sensor/ultrasonic, ultrasonic.jpg, Acoustic distance
-    VL53L0x, components/sensor/vl53l0x, vl53l0x.png, IR optical distance
+    VL53L0x, components/sensor/vl53l0x, vl53l0x.jpg, IR optical distance
 
 
 Electricity
@@ -237,20 +249,22 @@ Electricity
 
     ADE7953, components/sensor/ade7953, ade7953.svg, Power
     ATM90E32, components/sensor/atm90e32, atm90e32.jpg, Voltage & Current & Power
+    BL0940, components/sensor/bl0940, bl0940.png, Voltage & Current & Power
     CS5460A, components/sensor/cs5460a, cs5460a.png, Voltage & Current & Power
     CSE7761, components/sensor/cse7761, cse7761.svg, Voltage & Current & Power
     CSE7766, components/sensor/cse7766, cse7766.svg, Voltage & Current & Power
     CT Clamp, components/sensor/ct_clamp, ct_clamp.jpg, AC current
-    Daly BMS, components/sensor/daly_bms, daly_bms.png, Voltage & Current & Power
+    Daly BMS, components/sensor/daly_bms, daly_bms.jpg, Voltage & Current & Power
     DSMR, components/sensor/dsmr, dsmr.svg, Electrical counter
     HLW8012, components/sensor/hlw8012, hlw8012.svg, Voltage & Current & Power
-    INA219, components/sensor/ina219, ina219.jpg, DC current
-    INA226, components/sensor/ina226, ina226.jpg, DC current & Power
+    INA219, components/sensor/ina219, ina219.jpg, DC Current
+    INA226, components/sensor/ina226, ina226.jpg, DC Current & Power
+    INA260, components/sensor/ina260, ina260.jpg, DC Current & Power
     INA3221, components/sensor/ina3221, ina3221.jpg, 3-Ch DC current
-    PZEM AC, components/sensor/pzemac, pzem-ac.png, Voltage & Current & Power
-    PZEM DC, components/sensor/pzemdc, pzem-dc.png, Voltage & Current & Power
+    PZEM AC, components/sensor/pzemac, pzem-ac.jpg, Voltage & Current & Power
+    PZEM DC, components/sensor/pzemdc, pzem-dc.jpg, Voltage & Current & Power
     PZEM004T, components/sensor/pzem004t, pzem004t.svg, Voltage & Current & Power
-    SDM Meter, components/sensor/sdm_meter, sdm220m.png, Modbus energy monitor
+    SDM Meter, components/sensor/sdm_meter, sdm220m.jpg, Modbus energy monitor
     Selec Meter, components/sensor/selec_meter, selec_meter_em2m.jpg, Modbus energy monitor
     Teleinfo, components/sensor/teleinfo, teleinfo.jpg, Electrical counter
     Total Daily Energy, components/sensor/total_daily_energy, sigma.svg
@@ -269,6 +283,7 @@ Environmental
     BME680 via BSEC, components/sensor/bme680_bsec, bme680.jpg, Temperature & Humidity & Pressure & Gas
     BMP085, components/sensor/bmp085, bmp180.jpg, Temperature & Pressure
     BMP280, components/sensor/bmp280, bmp280.jpg, Temperature & Pressure
+    BMP388 and BMP390, components/sensor/bmp3xx, bmp388.jpg, Temperature & Pressure
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     Dallas DS18B20, components/sensor/dallas, dallas.jpg, Temperature
     DHT, components/sensor/dht, dht.jpg, Temperature & Humidity
@@ -323,6 +338,8 @@ Miscellaneous
     b-parasite, components/sensor/b_parasite, b_parasite.jpg, Moisture & Temperature & Humidity & Light
     EZO sensor circuits, components/sensor/ezo, ezo-ph-circuit.png, (pH)
     Havells Solar, components/sensor/havells_solar, havellsgti5000d_s.jpg, Solar rooftop
+    Growatt Solar, components/sensor/growatt_solar, growatt.jpg, Solar rooftop
+    Kalman Combinator, components/sensor/kalman_combinator, function.svg
     Modbus Sensor, components/sensor/modbus_controller, modbus.png
     Nextion, components/sensor/nextion, nextion.jpg, Sensors from display
     Rotary Encoder, components/sensor/rotary_encoder, rotary_encoder.jpg
@@ -405,6 +422,7 @@ Output Components
     SM16716, components/output/sm16716, sm16716.svg
     SM2135, components/output/sm2135, sm2135.svg
     MCP4725, components/output/mcp4725, mcp4725.jpg
+    MCP47A1, components/output/mcp47a1, mcp47a1.svg
     BLE Binary Output, components/output/ble_client, bluetooth.svg
     Modbus Output, components/output/modbus_controller, modbus.png
     Custom Output, components/output/custom, language-cpp.svg
@@ -487,7 +505,7 @@ Display Components
     Addressable Light, components/display/addressable_light, addressable_light.jpg
     LCD Display, components/display/lcd_display, lcd.jpg
     MAX7219, components/display/max7219, max7219.jpg
-    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.png
+    MAX7219 Dot Matrix, components/display/max7219digit, max7219digit.jpg
     TM1637, components/display/tm1637, tm1637.jpg
     Nextion, components/display/nextion, nextion.jpg
     SSD1306, components/display/ssd1306, ssd1306.jpg
@@ -501,7 +519,7 @@ Display Components
     ST7920, components/display/st7920, st7920.jpg
     ILI9341, components/display/ili9341, ili9341.jpg
     Waveshare E-Paper, components/display/waveshare_epaper, waveshare_epaper.jpg
-    Inkplate 6, components/display/inkplate6, inkplate6.jpg
+    Inkplate, components/display/inkplate6, inkplate6.jpg
     PCD8544 (Nokia 5110/ 3310), components/display/pcd8544, pcd8544.jpg
 
 Cover Components
@@ -558,6 +576,7 @@ Number Components
     Number Core, components/number/index, folder-open.svg
     Modbus Number, components/number/modbus_controller, modbus.png
     Template Number, components/number/template, description.svg
+    Tuya Number, components/number/tuya, tuya.png
 
 Select Components
 -----------------
@@ -658,10 +677,12 @@ Cookbook
     ESP32 Water Leak Detector, cookbook/leak-detector-m5stickC, leak-detector-m5stickC_main_index.jpg
     ESP32 BLE iTag Button, cookbook/ble_itag, esp32_ble_itag.jpg
     IAQ (Indoor Air Quality) Board, cookbook/iaq_board, iaq_board2.jpg
+    TUYA Smart Life RGBW Controller, cookbook/tuya_rgbw, tuya_rgbw.jpg
     Custom UART Text Sensor, cookbook/uart_text_sensor, language-cpp.svg
     IWOOLE Table Lamp, cookbook/iwoole_rgbw_table_lamp, iwoole_rgbw_table_lamp.png
     EPEVER Tracer, cookbook/tracer-an, tracer-an.jpg
     Ilonda Wifi Smart Fish Feeder, cookbook/ilonda-wifi-smart-fish-feeder, ilonda-wifi-smart-fish-feeder-cookbook.jpg
+    AirGradient DIY Air Quality Sensor, cookbook/air_gradient_diy_air_quality_sensor, air_gradient_diy_air_quality_sensor.jpg
 
 Do you have other awesome automations or cool setups? Please feel free to add them to the
 documentation for others to copy. See :doc:`Contributing </guides/contributing>`.

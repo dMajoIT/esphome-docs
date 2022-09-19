@@ -27,6 +27,8 @@ submit a feature request (see FAQ).
 +---------------------------------------+---------------------+----------------------+
 | Daikin                                | ``daikin``          | yes                  |
 +---------------------------------------+---------------------+----------------------+
+| :ref:`Delonghi<delonghi_ir>`          | ``delonghi``        | yes                  |
++---------------------------------------+---------------------+----------------------+
 | Fujitsu General                       | ``fujitsu_general`` | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Hitachi                               | ``hitachi_ac344``   | yes                  |
@@ -45,6 +47,8 @@ submit a feature request (see FAQ).
 | :ref:`Whirlpool<whirlpool>`           | ``whirlpool``       | yes                  |
 +---------------------------------------+---------------------+----------------------+
 | Yashima                               | ``yashima``         |                      |
++---------------------------------------+---------------------+----------------------+
+| :ref:`Whynter<whynter>`               | ``whynter``         | yes                  |
 +---------------------------------------+---------------------+----------------------+
 
 This component requires that you have configured a :doc:`/components/remote_transmitter`.
@@ -174,6 +178,10 @@ Configuration variables:
         sensor: room_temperature
         use_fahrenheit: true
 
+.. note::
+
+    - See :ref:`Toshiba<toshiba>` below if you are looking for compatibility with Midea model MAP14HS1TBL or similar.
+
 
 .. _climate_ir_lg:
 
@@ -200,6 +208,17 @@ Configuration variables:
         sensor: room_temperature
         header_high: 3265us # AC Units from LG in Brazil, for example use these timings
         header_low: 9856us
+
+.. _delonghi_ir:
+
+``delonghi`` Climate
+-------------------------
+
+Currently supports the protocol used by some Delonghi portable units
+
+Known working with:
+
+- Delonghi PAC WE 120HP
 
 
 .. _toshiba:
@@ -232,6 +251,9 @@ Configuration variables:
       ``update_interval`` must be less than seven minutes or the ``RAC-PT1411HWRU`` will revert to using its own
       internal temperature sensor; a value of 30 seconds seems to work well. See :doc:`/components/sensor/index`
       for more information.
+    
+    - This climate IR component is also known to work with Midea model MAP14HS1TBL and may work with other similar
+      models, as well. (Midea acquired Toshiba's product line and re-branded it.)
 
 
 .. _whirlpool:
@@ -249,6 +271,29 @@ Configuration variables:
 
   - ``DG11J1-3A``: Temperature range is from 18 to 32 (default)
   - ``DG11J1-91``: Temperature range is from 16 to 30
+
+.. _whynter:
+
+``whynter`` Climate
+-------------------------
+
+Additional configuration is available for this platform
+
+
+Configuration variables:
+
+- **use_fahrenheit** (*Optional*, boolean): Allows you to transfer the temperature to the air conditioner in degrees Fahrenheit. The air conditioner display also shows the temperature in Fahrenheit. Defaults to ``false``.
+
+.. code-block:: yaml
+
+    # Example configuration entry
+    climate:
+      - platform: whynter
+        name: "AC"
+        sensor: room_temperature
+        use_fahrenheit: true
+        supports_heat: true
+
 
 
 See Also

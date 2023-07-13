@@ -78,6 +78,81 @@ Configuration variables:
 If you're looking for the same functionality as is default in the ``rpi_rf`` integration in
 Home Assistant, you'll want to set the **times** to 10 and the **wait_time** to 0s.
 
+.. _remote_transmitter-transmit_aeha:
+
+``remote_transmitter.transmit_aeha`` Action
+*********************************************
+
+This :ref:`action <config-action>` sends a AEHA code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_aeha:
+          address: 0x1FEF
+          data: [0x1F, 0x3E, 0x06, 0x5F]
+
+Configuration variables:
+
+- **address** (**Required**, int): The address to send the command to, see dumper output for more details.
+- **data** (**Required**, list): The command to send, A length of 2-35 bytes can be specified for one packet.
+
+AEHA refers to the Association for Electric Home Appliances in Japan, a format used by Panasonic and many other companies.
+
+.. _remote_transmitter-transmit_canalsat:
+
+``remote_transmitter.transmit_canalsat`` Action
+***********************************************
+
+This :ref:`action <config-action>` sends a CanalSat infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsat:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
+.. _remote_transmitter-transmit_canalsatld:
+
+``remote_transmitter.transmit_canalsatld`` Action
+*************************************************
+
+This :ref:`action <config-action>` sends a CanalSatLD infrared remote code to a remote transmitter.
+
+.. note::
+
+    The CanalSat and CanalSatLD protocols use a higher carrier frequency (56khz) and are very similar.
+    Depending on the hardware used they may interfere with each other when enabled simultaneously.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_canalsatld:
+          device: 0x25
+          address: 0x00
+          command: 0x02
+
+Configuration variables:
+
+- **device** (**Required**, int): The device to send to, see dumper output for more details.
+- **address** (*Optional*, int): The address (or subdevice) to send to, see dumper output for more details. Defaults to ``0``
+- **command** (**Required**, int): The command to send.
+- All other options from :ref:`remote_transmitter-transmit_action`.
+
 .. _remote_transmitter-transmit_coolix:
 
 ``remote_transmitter.transmit_coolix`` Action
@@ -116,6 +191,28 @@ Configuration variables:
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 You can find a list of commands in the `LIRC project <https://sourceforge.net/p/lirc-remotes/code/ci/master/tree/remotes/dishnet/Dish_Network.lircd.conf>`__.
+
+.. _remote_transmitter-transmit_drayton:
+
+``remote_transmitter.transmit_drayton`` Action
+**********************************************
+
+This :ref:`action <config-action>` sends a Draton Digistat RF remote code to a remote transmitter.
+
+.. code-block:: yaml
+
+    on_...:
+      - remote_transmitter.transmit_drayton:
+          address: '0x6180'
+          channel: '0x12'
+          command: '0x02'      
+
+Configuration variables:
+
+- **address** (**Required**, int): The 16-bit ID to send, see dumper output for more info.
+- **channel** (**Required**, int): The switch/channel to send, between 0 and 127 inclusive.
+- **command** (**Required**, int): The command to send, between 0 and 63 inclusive.
+- All other options from :ref:`remote_transmitter-transmit_action`.
 
 .. _remote_transmitter-transmit_jvc:
 
@@ -187,9 +284,15 @@ This :ref:`action <config-action>` sends a 40-bit Midea code to a remote transmi
       - remote_transmitter.transmit_midea:
           code: [0xA2, 0x08, 0xFF, 0xFF, 0xFF]
 
+    on_...:
+      - remote_transmitter.transmit_midea:
+          code: !lambda |-
+            // Send a FollowMe code with the current temperature.
+            return {0xA4, 0x82, 0x48, 0x7F, (uint8_t)(id(temp_sensor).state + 1)};
+
 Configuration variables:
 
-- **code** (**Required**, list): The 40-bit Midea code to send as a list of hex or integers.
+- **code** (**Required**, list, :ref:`templatable <config-templatable>`): The 40-bit Midea code to send as a list of hex or integers.
 - All other options from :ref:`remote_transmitter-transmit_action`.
 
 ``remote_transmitter.transmit_nec`` Action
@@ -795,6 +898,10 @@ earlier, create a new template switch that sends the RF code when triggered:
           - remote_transmitter.transmit_rc_switch_raw:
               code: '100010000000000010111110'
               protocol: 2
+              repeat: 
+                times: 10
+                wait_time: 0s
+
 
     # Or for raw code
     switch:
@@ -809,11 +916,21 @@ earlier, create a new template switch that sends the RF code when triggered:
 Recompile again, when you power up the device the next time you will see a new switch
 in the frontend. Click on it and you should see the remote signal being transmitted. Done!
 
+.. note::
+
+    Some devices require that the transmitted code be repeated for the signal to be picked up 
+    as valid. Also the interval between repetitions can be important. Check that the pace of 
+    repetition logs are consistent between the remote controller and the transmitter node. 
+    You can adjust the ``repeat:`` settings accordingly.
+
+
+
 See Also
 --------
 
 - :doc:`index`
 - :doc:`/components/remote_receiver`
+- :ref:`lambda_magic_rf_queues`
 - `RCSwitch <https://github.com/sui77/rc-switch>`__ by `Suat Özgür <https://github.com/sui77>`__
 - `IRRemoteESP8266 <https://github.com/markszabo/IRremoteESP8266/>`__ by `Mark Szabo-Simon <https://github.com/markszabo>`__
 - :apiref:`remote_transmitter/remote_transmitter.h`

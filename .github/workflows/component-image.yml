@@ -95,7 +95,7 @@ jobs:
     steps:
       - name: Generate
         id: generate
-        uses: esphome/component-image-generator@d0d2a195b500e8c37c17f299ff6b90933f2197cf # v1.0.0
+        uses: esphome/component-image-generator@bb6b2f7876c04d0b8dff26cd99d309711a822544 # v2.1.0
         with:
           component: ${{ needs.prepare.outputs.name }}
 
